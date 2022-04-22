@@ -20,7 +20,7 @@ namespace UnitTestAndDebug
             {
                 return this.name;
             }
-            
+
             set
             {
                 if (!string.IsNullOrEmpty(value))
@@ -45,9 +45,15 @@ namespace UnitTestAndDebug
             }
         }
 
-        public void IntroduceYourself()
+        /// <summary>
+        /// Modifique el método "IntroduceYourself" agregandole solamente un return con la linea que debía imprimir 
+        /// por pantalla a efectos de poder realizar un testCase llamado "CorrectPrint" y verificar que el string se forme correctamente.
+        /// </summary>
+        /// <returns></returns>
+        public string IntroduceYourself()
         {
             Console.WriteLine($"Soy {this.Name} y mi cédula es {this.ID}");
+            return $"Soy {this.Name} y mi cédula es {this.ID}";
         }
     }
 }
