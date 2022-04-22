@@ -11,10 +11,10 @@ namespace Tests
         {
             // Insertá tu código de inicialización aquí
         }
+
         /// <summary>
         /// Se prueba que la función "IdIsValid" valide una cedula valida.
         /// </summary>
-
         [Test]
         public void ValidIdNumber() // Cambiá el nombre para indicar qué estás probando
         {
@@ -28,6 +28,26 @@ namespace Tests
         public void InvalidIdNumber()
         {
             Assert.AreEqual(false, IdUtils.IdIsValid("54332616"));
+        }
+
+        /// <summary>
+        /// Se prueba que se le saquen los puntos y guiones a la ID ingresada a traves del metodo IdIsValid.
+        /// </summary>
+        [Test]
+        public void ClearId()
+        {
+            Assert.AreEqual(true, IdUtils.IdIsValid("5.4.332---615"));
+        }
+
+        /// <summary>
+        /// Se prueba que el largo de la ID sea el esperado y en caso de no ser así retorne falso a través del método IdIsValid. 
+        /// </summary>
+        [Test]
+        public void TestShortLength()
+        {
+            string value = "111111-1";
+            bool result = IdUtils.IdIsValid(value);
+            Assert.False(result); //como el resultado es bool se puede usar Assert.false
         }
 
         /// <summary>
@@ -51,13 +71,24 @@ namespace Tests
         }
 
         /// <summary>
-        /// Se prueba en caso de asignar un string vacío lo tome como Null.
+        /// Se prueba en caso de asignar null como nombre.
         /// </summary>
         [Test]
-        public void InvalidNamePerson()
+        public void NullNamePerson()
         {
-            Person person1 = new Person("", "54332615");
+            Person person1 = new Person(null, "54332615");
             Assert.IsNull(person1.Name);
+        }
+
+        /// <summary>
+        /// Se prueba que se pueda cambiar correctamente el nombre de la persona.
+        /// </summary>
+        [Test]
+        public void TestChangeName()
+        {
+            Person persona1 = new Person("Juan Lopez", "1111111-1");
+            persona1.Name = "Sebastian Fernandez";
+            Assert.AreEqual("Sebastian Fernandez", persona1.Name);
         }
 
         /// <summary>
